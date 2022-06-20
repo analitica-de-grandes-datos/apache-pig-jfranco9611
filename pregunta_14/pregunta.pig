@@ -26,7 +26,7 @@ Data_13 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
       );
 pr1 = FOREACH Data_14 GENERATE color;
 pr2 = FILTER pr1 BY NOT (color MATCHES '.*^[bB].*');
