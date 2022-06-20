@@ -19,7 +19,7 @@ Data_03 = LOAD 'data.tsv' USING PigStorage('\t')
         dt3:int
      );
 
-top = FOREACH 'Data_03' GENERATE dt3;
+top = FOREACH Data_03 GENERATE dt3;
 sort3 = ORDER top BY dt3 asc;
-sort3 = LIMIT 5; sort3;
+sort3 = LIMIT sort3 5;
 STORE sort3 INTO 'output' USING PigStorage(',');
