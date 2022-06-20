@@ -16,7 +16,7 @@ Data_02 = LOAD 'data.tsv' USING PigStorage('\t')
     AS(
        dt1:chararray,
        dt2:chararray,
-       dt3:int,
+       dt3:int
        );
 
 sort1 = ORDER Data_02 BY dt1, dt3 asc;
