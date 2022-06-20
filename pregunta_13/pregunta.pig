@@ -29,9 +29,10 @@ Data_13 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int
-      );
+        numer:chararray
+    );
 
 pr1 = FOREACH Data_13 GENERATE color;
 pr2 = FILTER pr1 BY (color MATCHES '.*^[bB].*');
 STORE pr2 INTO 'output' USING PigStorage(',');
+
