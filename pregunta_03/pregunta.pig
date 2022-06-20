@@ -16,7 +16,7 @@ Data_03 = LOAD 'data.tsv' USING PigStorage('\t')
     AS(
         dt1:chararray,
         dt2:chararray,
-        dt3:int,
+        dt3:int
      );
 
 top = FOREACH 'Data_03' GENERATE dt3;
