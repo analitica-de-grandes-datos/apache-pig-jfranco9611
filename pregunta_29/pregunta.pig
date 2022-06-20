@@ -4,7 +4,7 @@ Pregunta
 
 Para responder la pregunta use el archivo `data.csv`.
 
-Escriba el código en Pig para manipulación de fechas que genere la siguiente 
+Escriba el código en Pig para manipulación de dates que genere la siguiente 
 salida.
 
    1971-07-08,jul,07,7
@@ -34,3 +34,20 @@ $ pig -x local -f pregunta.pig
         >>> Escriba su respuesta a partir de este punto <<<
 */
 
+Data_29 = LOAD 'data.csv' USING PigStorage(',')
+    AS(
+        id:int,
+        name:chararray,
+        lsname:chararray,
+        date:chararray,
+        color:chararray,
+        number:int,
+    );
+
+pr1 = FOREACH Data_29 GENERATE date, LOWER(ToString(ToDate(date), 'MMM')) AS nombre_mes, SUBSTRING(date,5,7) AS mes, GetMonth(ToDate(date)) AS month;
+pr1 = FOREACH pr1 GENERATE date, REPLACE(nombre_mes, 'jan', 'ene') AS nombre_mes, mes, month;
+pr1 = FOREACH pr1 GENERATE date, REPLACE(nombre_mes, 'apr', 'abr') AS nombre_mes, mes, month;
+pr1 = FOREACH pr1 GENERATE date, REPLACE(nombre_mes, 'aug', 'ago') AS nombre_mes, mes, month;
+pr1 = FOREACH pr1 GENERATE date, REPLACE(nombre_mes, 'dec', 'dic') AS nombre_mes, mes, month;
+
+STORE pr1 INTO 'output' USING PigStorage(',');
