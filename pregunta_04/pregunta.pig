@@ -45,7 +45,7 @@ Data_04 = LOAD 'data.csv' USING PigStorage(',')
       eventDate:chararray
     );
 
-top_04 = FOREACH Data_04 GENERATE driverId, truckId, eventTime;
-sort_04 = ORDER top_04 BY driverId, truckId, eventTime asc;
-sort_04 = LIMIT sort_04 10;
+top_04 = LIMIT Data_04 10;
+sort_04 = FOREACH sort_04 GENERATE driverId, truckId, eventTime;
+sort_04 = ORDER sort_04 BY driverId, truckId, eventTime asc;
 STORE sort_04 INTO 'output' USING PigStorage(',');
