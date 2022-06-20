@@ -27,7 +27,7 @@ Data_16 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        numer:int
       );
 
 pr1 = FOREACH Data_16 GENERATE name, color;
