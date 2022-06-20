@@ -21,8 +21,8 @@ Data_05 = LOAD 'data.tsv' USING PigStorage('\t')
 
 pr1 = FOREACH Data_05 GENERATE dt2;
 pr2 = FOREACH pr1 GENERATE FLATTEN(TOKENIZE(dt2)) AS dt21;
-pr2 = FILTER pr2 BY (dt21 MATCHES '.*[a-z].*');
-pr3 = GROUP pr2 BY dt21;
-Agg_05 = FOREACH pr3 GENERATE group; COUNT(pr2);
+pr3 = FILTER pr2 BY (dt21 MATCHES '.*[a-z].*');
+pr4 = GROUP pr3 BY dt21;
+Agg_05 = FOREACH pr4 GENERATE group, COUNT(pr3);
 STORE Agg_05 INTO 'output' USING PigStorage(',');
 
