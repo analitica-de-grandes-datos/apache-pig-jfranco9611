@@ -24,7 +24,7 @@ Data_08 = LOAD 'data.tsv' USING PigStorage('\t')
      );
 
 pr1 = FOREACH Data_08 GENERATE dt1, FLATTEN(TOKENIZE(dt2, ',')) AS dt21, FLATTEN(TOKENIZE(dt3, ',')) AS dt31;
-pr2 = FOREACH pr1 GENERATE REPLACE(dt21, '([^a-zA-Z\\s]+)','') AS dt22, REPLACE(dt31, '([^a-zA-Z\\s]+)','') AS pr32;
+pr2 = FOREACH pr1 GENERATE REPLACE(dt21, '([^a-zA-Z\\s]+)','') AS dt22, REPLACE(dt31, '([^a-zA-Z\\s]+)','') AS dt32;
 pr3 = FOREACH pr2 GENERATE TOTUPLE(dt22, dt32) AS tp:
 Agg_08 = GROUP pr3 BY tp;
 Cnt_08 = FOREACH Agg_08 GENERATE group, COUNT(pr3);
