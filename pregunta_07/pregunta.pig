@@ -18,7 +18,7 @@ Data_07 = LOAD 'data.tsv' USING PigStorage('\t')
     AS(
         dt1:chararray,
         dt2:chararray,
-        dt3:chararray,
+        dt3:chararray
      );
 
 pr1 = FOREACH Data_07 GENERATE dt1, TOKENIZE(dt2, ',') AS dt21, TOKENIZE(dt3, ',') AS dt31;
