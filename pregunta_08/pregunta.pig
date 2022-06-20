@@ -20,12 +20,12 @@ Data_08 = LOAD 'data.tsv' USING PigStorage('\t')
     AS(
         dt1:chararray,
         dt2:chararray,
-        dt3:chararray,
+        dt3:chararray
      );
 
 pr1 = FOREACH Data_08 GENERATE dt1, FLATTEN(TOKENIZE(dt2, ',')) AS dt21, FLATTEN(TOKENIZE(dt3, ',')) AS dt31;
-pr2 = FOREACH pr1 GENERATE REPLACE(pr21, '([^a-zA-Z\\s]+)','') AS dt22, REPLACE(pr31, '([^a-zA-Z\\s]+)','') AS pr32;
-pr3 = FOREACH pr2 GENERATE TOTUPLE(pr22, pr32) AS tp:
+pr2 = FOREACH pr1 GENERATE REPLACE(dt21, '([^a-zA-Z\\s]+)','') AS dt22, REPLACE(dt31, '([^a-zA-Z\\s]+)','') AS pr32;
+pr3 = FOREACH pr2 GENERATE TOTUPLE(dt22, dt32) AS tp:
 Agg_08 = GROUP pr3 BY tp;
 Cnt_08 = FOREACH Agg_08 GENERATE group, COUNT(pr3);
 STORE Cnt_08 INTO 'output' USING PigStorage(',');
