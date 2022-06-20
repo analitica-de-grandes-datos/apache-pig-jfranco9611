@@ -40,7 +40,7 @@ Data_11 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
       );
 
 pr1 = FOREACH Data_11 GENERATE lsname, UPPER(name) AS upp, LOWER(lsname) AS low;
