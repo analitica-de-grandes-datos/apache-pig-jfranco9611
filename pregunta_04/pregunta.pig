@@ -31,21 +31,21 @@ $ pig -x local -f pregunta.pig
 
 Data_04 = LOAD 'data.csv' USING PigStorage(',')
     AS(
-      driverId:int,
-      truckId:int,
-      eventTime:chararray ,
-      eventType:chararray,
-      longitude:double,
-      latitude:double,
-      eventKey:chararray,
-      correlationId:chararray,
-      driverName:chararray,
-      routeId:chararray,
-      routeName:chararray,
-      eventDate:chararray
+            driverId:int,
+            truckId:int,
+            eventTime:chararray,
+            eventType:chararray,
+            longitude:double,
+            latitude:double,
+            eventKey:chararray,
+            correlationId:chararray,
+            driverName:chararray,
+            routeId:biginteger,
+            routeName:chararray,
+            eventDate:chararray
     );
 
 top_04 = LIMIT Data_04 10;
-sort_04 = FOREACH sort_04 GENERATE driverId, truckId, eventTime;
+sort_04 = FOREACH top_04 GENERATE driverId, truckId, eventTime;
 sort_04 = ORDER sort_04 BY driverId, truckId, eventTime asc;
 STORE sort_04 INTO 'output' USING PigStorage(',');
