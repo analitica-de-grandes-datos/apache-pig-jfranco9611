@@ -34,7 +34,7 @@ Data_12 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
       );
 
 pr1 = FOREACH Data_12 GENERATE lsname;
