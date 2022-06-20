@@ -6,8 +6,9 @@ Para responder la pregunta use el archivo `data.csv`.
 
 Escriba el código equivalente a la siguiente consulta SQL.
 
-   SELECT 
-       REGEX_EXTRACT(birthday, '....-..-..', 2) 
+   SELECT  
+       firstname,
+       SUBSTRING_INDEX(firstname, 'a', 1)
    FROM 
        u;
 
@@ -18,7 +19,8 @@ $ pig -x local -f pregunta.pig
 
         >>> Escriba su respuesta a partir de este punto <<<
 */
-Data_24 = LOAD 'data.csv' USING PigStorage(',')
+
+Data_25 = LOAD 'data.csv' USING PigStorage(',')
     AS(
         id:int,
         name:chararray,
@@ -28,7 +30,5 @@ Data_24 = LOAD 'data.csv' USING PigStorage(',')
         number:int,
       );
 
-pr1 = FOREACH Data_24 GENERATE REGEX_EXTRACT(date, '(.*)-(.*)-(.*)',2);
+pr1 = FOREACH Data_25 GENERATE INDEXOF(name, 'a',1);
 STORE pr1 INTO 'output' USING PigStorage(',');
-
-
