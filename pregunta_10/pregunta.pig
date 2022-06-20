@@ -30,8 +30,8 @@ Data_10 = LOAD 'data.csv' USING PigStorage(',')
         number:int
       );
 
-pr1 = FOREACH Data_10 GENERATE lsname, SIZE(lsname) AS long;
-sort_10 = ORDER pr1 BY Long desc, lsname asc;
+pr1 = FOREACH Data_10 GENERATE lsname, SIZE(lsname) AS lon;
+sort_10 = ORDER pr1 BY lon desc, lsname asc;
 sort_10 = LIMIT sort_10 5;
 STORE sort_10 INTO 'output' USING PigStorage(',');
 
