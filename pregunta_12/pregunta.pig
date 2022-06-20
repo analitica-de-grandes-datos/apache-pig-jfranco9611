@@ -27,3 +27,16 @@ $ pig -x local -f pregunta.pig
         >>> Escriba su respuesta a partir de este punto <<<
 */
 
+Data_12 = LOAD 'data.csv' USING PigStorage(',')
+    AS(
+        id:int,
+        name:chararray,
+        lsname:chararray,
+        date:chararray,
+        color:chararray,
+        number:int,
+      );
+
+pr1 = FOREACH Data_12 GENERATE lsname;
+pr2 = FILTER pr1 BY (lsname MATCHES '.*^[d-kD-K].*');
+STORE pr2 INTO 'output' USING PigStorage(',');
