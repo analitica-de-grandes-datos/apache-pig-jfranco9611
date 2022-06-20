@@ -23,7 +23,7 @@ Data_08 = LOAD 'data.tsv' USING PigStorage('\t')
         dt3:chararray
      );
 
-pr1 = FOREACH Data_08 GENERATE dt1, FLATTEN(TOKENIZE(dt2, ',')) AS dt21, FLATTEN(TOKENIZE(dt3, ',')) AS dt31;
+pr1 = FOREACH Data_08 GENERATE FLATTEN(TOKENIZE(dt2, ',')) AS dt21, FLATTEN(TOKENIZE(dt3, ',')) AS dt31;
 pr2 = FOREACH pr1 GENERATE REPLACE(dt21, '([^a-zA-Z\\s]+)','') AS dt22, REPLACE(dt31, '([^a-zA-Z\\s]+)','') AS dt32;
 pr3 = FOREACH pr2 GENERATE TOTUPLE(dt22, dt32) AS tp:
 Agg_08 = GROUP pr3 BY tp;
