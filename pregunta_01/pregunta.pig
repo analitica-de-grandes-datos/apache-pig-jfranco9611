@@ -19,6 +19,6 @@ Data_01 = LOAD 'data.tsv' USING PigStorage('\t')
         dt3:int
     );
 
-Agg_1 = GROUP ejercicio BY dt1;
+Agg_1 = GROUP Data_01 BY dt1;
 Cnt_1 = FOREACH Agg_1 GENERATE group, COUNT(Data_01);
 STORE Cnt_1 INTO 'output' USING PigStorage(',');
