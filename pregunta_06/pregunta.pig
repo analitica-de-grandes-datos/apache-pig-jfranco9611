@@ -24,7 +24,5 @@ pr1 = FOREACH Data_06 GENERATE dt3;
 pr2 = FOREACH pr1 GENERATE FLATTEN(TOKENIZE(dt3)) AS dt31;
 pr3 = FOREACH pr2 GENERATE REPLACE (dt31, '([^a-zA-Z\\s]+)','') AS dt31;
 pr4 = GROUP pr3 BY dt31;
-Agg_06 = FOREACH pr4 GENERATE group, COUNT(pr2);
+Agg_06 = FOREACH pr4 GENERATE group, COUNT(pr3);
 STORE Agg_06 INTO 'output' USING PigStorage(',');
-
-
