@@ -38,7 +38,7 @@ Data_09 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
       );
 
 Concat = FOREACH Data_09 GENERATE CONCAT(name, '@', lsname);
