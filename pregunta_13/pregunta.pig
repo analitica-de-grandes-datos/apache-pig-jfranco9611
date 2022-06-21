@@ -22,7 +22,7 @@ $ pig -x local -f pregunta.pig
         /* >>> Escriba su respuesta a partir de este punto <<< */
 */
 
-Data_13 = LOAD 'data.csv' USING PigStorage(',')
+ejercicio = LOAD 'data.csv' USING PigStorage(',')
     AS (
             id: int,
             nombre:chararray,
@@ -32,7 +32,6 @@ Data_13 = LOAD 'data.csv' USING PigStorage(',')
             numer:chararray
     );
 
-pr1 = FOREACH Data_13 GENERATE color;
-pr2 = FILTER pr1 BY (color MATCHES '.*^[bB].*');
-STORE pr2 INTO 'output' USING PigStorage(',');
-
+sub_conjunto= FOREACH ejercicio GENERATE color;
+filtro_B= FILTER sub_conjunto BY (color MATCHES '.*^[bB].*');
+STORE filtro_B INTO 'output' USING PigStorage(',');
