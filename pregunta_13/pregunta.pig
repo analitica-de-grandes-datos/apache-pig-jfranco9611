@@ -24,7 +24,6 @@ $ pig -x local -f pregunta.pig
 
 Data_13 = LOAD 'data.csv' USING PigStorage(',')
     AS(
-        id:int,
         name:chararray,
         lsname:chararray,
         date:chararray,
