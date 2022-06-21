@@ -40,7 +40,7 @@ Data_30 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
     );
 
 pr1 = FOREACH Data30 GENERATE ToString(date, 'yyyy-MM-dd') AS fecha, ToString(date, 'dd,d') AS dia, ToString(date, 'EEE') AS nombre_pdia, ToString(date, 'EEEE') AS nombre_dia;
