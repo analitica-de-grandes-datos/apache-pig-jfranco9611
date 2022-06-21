@@ -13,6 +13,7 @@ $ pig -x local -f pregunta.pig
 
         >>> Escriba su respuesta a partir de este punto <<<
 */
+
 Data_31 = LOAD 'data.csv' USING PigStorage(',')
     AS(
         id:int,
@@ -20,7 +21,7 @@ Data_31 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
     );
 
 pr1 = GROUP Data_31 BY GetYear(Date);
