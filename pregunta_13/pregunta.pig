@@ -23,13 +23,13 @@ $ pig -x local -f pregunta.pig
 */
 
 Data_13 = LOAD 'data.csv' USING PigStorage(',')
-    AS(
-        id:int,
-        name:chararray,
-        lsname:chararray,
-        date:chararray,
-        color:chararray,
-        numer:chararray
+    AS (
+            id: int,
+            nombre:chararray,
+            apellido:chararray,
+            fecha:chararray,
+            color:chararray,
+            numer:chararray
     );
 
 pr1 = FOREACH Data_13 GENERATE color;
