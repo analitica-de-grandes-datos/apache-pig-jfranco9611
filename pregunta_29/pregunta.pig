@@ -41,7 +41,7 @@ Data_29 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
     );
 
 pr1 = FOREACH Data_29 GENERATE date, LOWER(ToString(ToDate(date), 'MMM')) AS nombre_mes, SUBSTRING(date,5,7) AS mes, GetMonth(ToDate(date)) AS month;
