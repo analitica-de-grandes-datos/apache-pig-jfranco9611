@@ -19,7 +19,7 @@ Data_31 = LOAD 'data.csv' USING PigStorage(',')
         id:int,
         name:chararray,
         lsname:chararray,
-        date:chararray,
+        date:datetime,
         color:chararray,
         number:int
     );
