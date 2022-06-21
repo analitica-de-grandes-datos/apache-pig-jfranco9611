@@ -17,7 +17,18 @@ Escriba el resultado a la carpeta `output` del directorio actual. Para la
 evaluación, pig sera eejcutado ejecutado en modo local:
 
 $ pig -x local -f pregunta.pig
-
-        /* >>> Escriba su respuesta a partir de este punto <<< */
 */
 
+Data_16 = LOAD 'data.csv' USING PigStorage(',')
+    AS(
+        id:int,
+        name:chararray,
+        lsname:chararray,
+        date:chararray,
+        color:chararray,
+        numer:int
+      );
+
+pr1 = FOREACH Data_16 GENERATE name, color;
+pr2 = FILTER pr1 BY (name MATCHES '.*^[kK].*') OR (color == 'blue');
+STORE pr2 INTO 'output' USING PigStorage(',');

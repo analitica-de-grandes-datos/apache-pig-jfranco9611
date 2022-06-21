@@ -4,7 +4,7 @@ Pregunta
 
 Para responder la pregunta use el archivo `data.csv`.
 
-Escriba el codigo en Pig para manipulación de fechas que genere la siguiente
+Escriba el codigo en Pig para manipulación de dates que genere la siguiente
 salida.
 
    1971-07-08,08,8,jue,jueves
@@ -34,3 +34,22 @@ $ pig -x local -f pregunta.pig
         >>> Escriba su respuesta a partir de este punto <<<
 */
 
+Data_30 = LOAD 'data.csv' USING PigStorage(',')
+    AS (
+            id: int,
+            name:chararray,
+            lsname:chararray,
+            date:datetime,
+            color:chararray,
+            numer:chararray
+    );
+
+
+pr1 = FOREACH Data_30 GENERATE ToString(date, 'yyyy-MM-dd') AS date, ToString(date, 'dd,d') AS dia, ToString(date, 'EEE') AS nombre_pdia, ToString(date, 'EEEE') AS nombre_dia;
+
+pr2 = FOREACH pr1 GENERATE date, dia, (nombre_pdia == 'Mon'? 'lun':(nombre_pdia == 'Tue'? 'mar':(nombre_pdia == 'Wed'? 'mie':
+(nombre_pdia == 'Thu'? 'jue':(nombre_pdia == 'Fri'? 'vie':(nombre_pdia == 'Sat'? 'sab':(nombre_pdia == 'Sun'? 'dom':'falso'))))))) as diaAbreviado,
+(nombre_dia == 'Monday'? 'lunes':(nombre_dia == 'Tuesday'? 'martes':(nombre_dia == 'Wednesday'? 'miercoles':
+(nombre_dia == 'Thursday'? 'jueves':(nombre_dia == 'Friday'? 'viernes':(nombre_dia == 'Saturday'? 'sabado':(nombre_dia == 'Sunday'? 'domingo':'falso'))))))) as diaCompleto;
+
+STORE pr2 INTO 'output' USING PigStorage(',');
