@@ -30,7 +30,7 @@ Data_28 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
       );
 
 pr1 = FOREACH Data_28 GENERATE SUBSTRING(date,0,4) AS year4, SUBSTRING(date,2,4) AS year2;
