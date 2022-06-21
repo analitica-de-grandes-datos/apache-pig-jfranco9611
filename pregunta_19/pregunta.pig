@@ -18,10 +18,8 @@ Escriba el resultado a la carpeta `output` del directorio actual. Para la
 evaluación, pig sera eejcutado ejecutado en modo local:
 
 $ pig -x local -f pregunta.pig
+>>> Escriba su respuesta a partir de este punto <<< */
 
-        /* >>> Escriba su respuesta a partir de este punto <<< */
-
-*/
 
 Data_19 = LOAD 'data.csv' USING PigStorage(',')
     AS(
@@ -30,7 +28,7 @@ Data_19 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
       );
 
 pr1 = FOREACH Data_19 GENERATE name, color;
