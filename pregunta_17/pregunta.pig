@@ -22,12 +22,12 @@ $ pig -x local -f pregunta.pig
 
 Data_17 = LOAD 'data.csv' USING PigStorage(',')
     AS(
-        id:int,
+        id: int,
         name:chararray,
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        numer:int
       );
 
 pr1 = FOREACH Data_17 GENERATE name, color;
