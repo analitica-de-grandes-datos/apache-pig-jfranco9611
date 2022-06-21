@@ -22,16 +22,18 @@ $ pig -x local -f pregunta.pig
         /* >>> Escriba su respuesta a partir de este punto <<< */
 */
 
-ejercicio = LOAD 'data.csv' USING PigStorage(',')
-    AS (
-            id: int,
-            nombre:chararray,
-            apellido:chararray,
-            fecha:chararray,
-            color:chararray,
-            numer:chararray
-    );
+Data_13 = LOAD 'data.csv' USING PigStorage(',')
+    AS(
+        id:int,
+        name:chararray,
+        lsname:chararray,
+        date:chararray,
+        color:chararray,
+        numer:int
+      );
 
-sub_conjunto= FOREACH ejercicio GENERATE color;
-filtro_B= FILTER sub_conjunto BY (color MATCHES '.*^[bB].*');
-STORE filtro_B INTO 'output' USING PigStorage(',');
+
+pr1 = FOREACH Data_13 GENERATE color;
+pr2 = FILTER pr1 BY (color MATCHES '.*^[bB].*');
+STORE pr2 INTO 'output' USING PigStorage(',');
+
