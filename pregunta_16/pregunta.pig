@@ -31,5 +31,5 @@ Data_16 = LOAD 'data.csv' USING PigStorage(',')
       );
 
 pr1 = FOREACH Data_16 GENERATE name, color;
-pr2 = FILTER pr1 BY (name MATCHES '.*^[kK].*') OR color == 'blue';
+pr2 = FILTER pr1 BY (name MATCHES '.*^[kK].*') OR (color == 'blue');
 STORE pr2 INTO 'output' USING PigStorage(',');
