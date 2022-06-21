@@ -27,7 +27,7 @@ Data_27 = LOAD 'data.csv' USING PigStorage(',')
         lsname:chararray,
         date:chararray,
         color:chararray,
-        number:int,
+        number:int
       );
 
 pr1 = FOREACH Data_27 GENERATE INDEXOF(name, 'ia', 1);
